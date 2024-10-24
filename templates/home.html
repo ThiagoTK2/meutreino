@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Meu Treino</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Meu Treino</a>
+            <div class="d-flex align-items-center ms-auto">
+                <!-- Botão para voltar para o login -->
+                <a href="/login" class="btn btn-primary me-2">Voltar para Login</a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/novo_treino">Adicionar Novo Treino</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">Sair</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Seus Treinos</h2>
+        <ul class="list-group">
+            <!-- Aqui vai a listagem de treinos -->
+            <li class="list-group-item">
+                <a href="/treino/1" class="text-decoration-none">Treino de Peito e Tríceps</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/treino/2" class="text-decoration-none">Treino de Pernas Posterior</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/treino/3" class="text-decoration-none">Treino de Costas e Bíceps</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/treino/4" class="text-decoration-none">Treino de Ombro e Trapézio</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/treino/5" class="text-decoration-none">Treino de Pernas Quadríceps</a>
+            </li>
+        </ul>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        Meu Treino © 2024
+    </footer>
+
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
