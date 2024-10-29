@@ -1,48 +1,131 @@
-body {
+/* Estilo Global */
+
+/* Geral */
+.pagina-home {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: #3ddbef; /* Cor de fundo alterada para um tom mais suave */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Centralização de container geral */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%; /* Ocupa a largura total */
+}
+
+/* Login */
+.pagina-login {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #333333, #1a1a1a);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
 }
 
 .login-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-}
-
-h2 {
+    background-color: #2c2c2c;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    width: 320px;
     text-align: center;
+    color: #fff;
 }
 
-input {
+.login-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #28a735;
+    font-weight: bold;
+}
+
+.login-container p {
+    font-size: 14px;
+    color: #b3b3b3;
+}
+
+.login-container input {
     width: 100%;
-    padding: 10px;
-    margin: 8px 0;
+    padding: 12px;
+    margin: 10px 0;
     box-sizing: border-box;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #444;
+    color: #fff;
+}
+
+.login-container input::placeholder {
+    color: #999;
+}
+
+.login-container input:focus {
+    border-color: #28a745;
+    outline: none;
+    background-color: #3a3a3a;
 }
 
 button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #28a745;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #218838;
 }
 
+/* Link de recuperação de senha */
+.login-container a {
+    display: block;
+    margin-top: 15px;
+    color: #28a745;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+/* Animação de entrada */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-container {
+    animation: slideIn 0.6s ease;
+}
+
+
 /* Templates Home */
 
+/* Barra de Navegação */
 header {
     background-color: #333;
     color: white;
@@ -50,6 +133,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%; /* Ocupa a largura total */
 }
 
 header h1 {
@@ -62,32 +146,155 @@ nav a {
     text-decoration: none;
 }
 
+/* Marcar página atual */
+nav a.active {
+    color: #ffd700; /* Cor dourada para destacar o link da página ativa */
+    text-decoration: underline;
+}
+
 nav a:hover {
     text-decoration: underline;
 }
 
+/* Main content styling */
 main {
     padding: 20px;
+    width: 100%;
 }
 
-ul {
-    list-style-type: none;
+/* Listagem de Treinos */
+ul.list-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     padding: 0;
+    list-style: none;
+    gap: 15px; /* Espaço entre os itens */
 }
 
-li {
-    padding: 10px;
+ul.list-group li {
+    padding: 15px;
     background-color: #f4f4f4;
-    margin-bottom: 10px;
-    border-radius: 4px;
+    border-radius: 8px;
+    min-width: 150px;
+    max-width: 200px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
+ul.list-group li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+ul.list-group li:hover {
+    background-color: #e0f7fa;
+}
+
+/* Rodapé fixo no fim da página */
 footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+
+/* Página Novo Treino */
+.pagina-novo-treino {
+    background-color: #0657a8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+}
+
+/* Ajustar barra de navegação para ocupar toda a largura */
+.navbar {
+    width: 100%;
+    padding: 10px;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    color: #fff;
+}
+
+.nav-link {
+    color: #000000;
+    font-size: 16px;
+    margin-left: 20px;
+}
+
+.nav-link:hover {
+    color: #3d3c3c;
+    text-decoration: underline;
+}
+
+/* Estilo do rodapé */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+}
+
+/* Estilo do container principal */
+.login-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+/* Estilo do título */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Estilos para inputs e labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"], input[type="date"], input[type="number"], input[type="url"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #3d3d3d;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilo do botão */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #218838;
 }

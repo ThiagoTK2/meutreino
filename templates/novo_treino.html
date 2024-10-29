@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Novo Treino</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/static/img/logo_site.png"/>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="pagina-novo-treino">
+
+    <!-- Barra de Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid d-flex justify-content-between">
+            <a class="navbar-brand" href="/">Meu Treino</a> 
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="container">
+        <section class="login-container">
+            <h2>Adicionar Novo Treino</h2>
+
+            <form action="/salvar_treino" method="POST">
+                <!-- Campo Nome do Treino -->
+                <div class="mb-3">
+                    <label for="nome">Nome do Treino:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite o nome do treino" required>
+                </div>
+
+                <!-- Campo Data do Treino -->
+                <div class="mb-3">
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" name="data" required>
+                </div>
+
+                <!-- Campo Repetições -->
+                <div class="mb-3">
+                    <label for="repeticoes">Repetições:</label>
+                    <input type="number" id="repeticoes" name="repeticoes" placeholder="Número de repetições" required>
+                </div>
+
+                <!-- Campo Peso -->
+                <div class="mb-3">
+                    <label for="peso">Peso (kg):</label>
+                    <input type="number" id="peso" name="peso" placeholder="Peso utilizado" required>
+                </div>
+
+                <!-- Campo Vídeo -->
+                <div class="mb-3">
+                    <label for="video">Link do Vídeo de Execução:</label>
+                    <input type="url" id="video" name="video" placeholder="URL do vídeo (opcional)">
+                </div>
+                
+                <!-- Botão de Submissão -->
+                <button type="submit">Salvar Treino</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Rodapé da Página -->
+    <footer>
+        <p>&copy; 2024 Meu Treino - Todos os direitos reservados</p>
+    </footer>
+
+</body>
+</html>
