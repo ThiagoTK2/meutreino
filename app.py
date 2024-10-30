@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+import json
 
 app = Flask(__name__)
 app.secret_key = 'minha_chave_secreta'  # Necessária para usar flash messages
-
 
 # Estrutura dos treinos com campo de peso
 treinos = {
@@ -48,57 +49,80 @@ treinos = {
     },
 }
 
+usuarios = [
+    {"id": 1, "username": "admin", "password": "senha123", "role": "admin", "treinos":[1,2,3]},
+    {"id": 2, "username": "thiago", "password": "th9578", "role": "user", "treinos": [1,2,3,4,5]},
+    {"id": 2, "username": "heloysa", "password": "helo2004", "role": "user", "treinos":[2,4,5]}
+]
+
+
+# Carregar usuários do arquivo JSON
+try:
+    with open('usuarios.json', 'r') as file:
+        usuarios = json.load(file)["usuarios"]
+except (FileNotFoundError, KeyError) as e:
+    print("Erro ao carregar usuários:", e)
+    usuarios = []
+
+def encontrar_usuario(username):
+    return next((user for user in usuarios if user["username"] == username), None)
+
 @app.route('/submit-treino', methods=['POST'])
 def submit_treino():
-    # Aqui você pega os dados do formulário
     pesos = request.form.to_dict()
-    
-    # Exemplo de como você pode processar os pesos
     for key, value in pesos.items():
         print(f"Peso para série {key}: {value}")
-        # Você pode salvar os pesos no banco de dados ou arquivo JSON aqui
-    
     return redirect(url_for('treino'))
 
-
-# Usuário e senha fixos (para fins de teste)
-USUARIO = 'admin'
-SENHA = 'senha123'
-
-# Rota para a página inicial
 @app.route('/')
 def home():
     return render_template('home.html')
 
-# Rota para um treino específico
 @app.route('/treino/<int:treino_id>')
 def treino(treino_id):
-    treino = treinos.get(treino_id)  # Retorna None se o ID não existir
+    treino = treinos.get(treino_id)
+    print("Treino encontrado:", treino)  # Adiciona esta linha para ver o valor de treino
     if treino is None:
         return "Treino não encontrado", 404
-    return render_template('treino.html', treino=treino)
+    return render_template('treino.html', treino=treino, treino_id=treino_id)
 
-# Rota para a página 'Adicionar Novo Treino'
+
+@app.route('/meus_treinos')
+def meus_treinos():
+    # Verifica se há uma lista de treinos na sessão
+    if 'treinos' not in session or not session['treinos']:
+        flash("Você não tem treinos definidos.")
+        return redirect(url_for('login'))
+
+    # Supondo que 'treinos' seja um dicionário global ou definido em algum lugar do seu código
+    meus_treinos = [treinos[t] for t in session['treinos'] if t in treinos]
+
+    return render_template('meus_treinos.html', meus_treinos=meus_treinos)
+
+
 @app.route('/novo_treino')
 def novo_treino():
     return render_template('novo_treino.html')
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+
+        usuario = encontrar_usuario(username)
         
-        if username == USUARIO and password == SENHA:
-            return redirect(url_for('home'))  # Redireciona para a página inicial se o login for bem-sucedido
+        if usuario and usuario['senha'] == password:  # Alterado 'password' para 'senha'
+            session['user_id'] = usuario['id']
+            session['username'] = usuario['username']
+            session['treinos'] = usuario.get('treinos', [])  # Defina os treinos do usuário
+            return redirect(url_for('meus_treinos'))
         else:
             flash('Usuário ou senha incorretos. Tente novamente!')
-            return redirect(url_for('login'))  # Redireciona de volta ao login em caso de falha
+            return redirect(url_for('login'))
 
     return render_template('login.html')
 
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-
-

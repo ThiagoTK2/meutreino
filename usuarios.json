@@ -1,0 +1,25 @@
+{
+	"usuarios": [
+		{
+			"id": 1,
+			"username": "admin",
+			"senha": "admin123",
+			"role": "admin",
+            "treinos":[1,2,3]
+		},
+		{
+			"id": 2,
+			"username": "thiago",
+			"senha": "th9578",
+			"role": "user",
+            "treinos": [1,2,3,4,5]
+		},
+		{
+			"id": 3,
+			"username": "heloysa",
+			"senha": "helo2004",
+			"role": "user",
+            "treinos":[2,4,5]
+		}
+	]
+}
